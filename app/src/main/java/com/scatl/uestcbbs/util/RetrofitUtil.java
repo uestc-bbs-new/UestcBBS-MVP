@@ -50,18 +50,20 @@ public class RetrofitUtil {
                 .dns(new OkHttpDns())
                 .addInterceptor(chain -> {
                     Request request = chain.request();
+                    Request.Builder newBuilder = chain.request().newBuilder();
+                    newBuilder.url(chain.request().url().toString().replaceFirst(
+                            "^https?://bbs\\.uestc\\.edu\\.cn/",
+                            SharePrefUtil.getServerUrl(App.getContext())));
                     if (!request.url().toString().contains("r=user/login")) {
-                        Request.Builder newBuilder = chain.request().newBuilder();
                         newBuilder.addHeader("Cookie", getCookies());
-                        return chain.proceed(newBuilder.build());
                     }
-                    return chain.proceed(request);
+                    return chain.proceed(newBuilder.build());
                 })
                 .addInterceptor(chain -> {
 
                     Request request = chain.request();
 
-                    if (request.url().toString().contains(ApiConstant.BBS_BASE_URL)) {
+                    if (request.url().toString().contains("http://202.115.22.221:65342/")) {
                         HashMap<String, String> addParams = new HashMap<>();
 
                         addParams.put("apphash", ForumUtil.getAppHashValue());

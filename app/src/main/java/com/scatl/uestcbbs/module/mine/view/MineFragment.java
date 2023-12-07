@@ -29,6 +29,7 @@ import com.scatl.uestcbbs.module.account.view.AccountManageActivity;
 import com.scatl.uestcbbs.module.history.view.HistoryActivity;
 import com.scatl.uestcbbs.module.mine.presenter.MinePresenter;
 import com.scatl.uestcbbs.module.post.view.PostDraftActivity;
+import com.scatl.uestcbbs.module.server.ServerActivity;
 import com.scatl.uestcbbs.module.setting.view.SettingsActivity;
 import com.scatl.uestcbbs.module.user.view.BlackListActivity;
 import com.scatl.uestcbbs.module.user.view.UserDetailActivity;
@@ -43,7 +44,7 @@ public class MineFragment extends BaseFragment implements MineView {
     private ImageView userIcon;
     private TextView userName;
     private RelativeLayout mineFavoriteRl, minePostRl, mineReplyRl, mineDraftRl,
-            settingsRl, exitRl, accountMangerRl, historyRl, blackListRl, mineCreditRl;
+            serverRl, settingsRl, exitRl, accountMangerRl, historyRl, blackListRl, mineCreditRl;
     private Switch nightModeSwitch;
     private ProgressBar levelProgress;
 
@@ -69,6 +70,7 @@ public class MineFragment extends BaseFragment implements MineView {
         mineCardView1 = view.findViewById(R.id.mine_cardview1);
         userIcon = view.findViewById(R.id.mine_user_icon);
         userName = view.findViewById(R.id.mine_user_name);
+        serverRl = view.findViewById(R.id.mine_server_rl);
         settingsRl = view.findViewById(R.id.mine_settings_rl);
         exitRl = view.findViewById(R.id.mine_exit_rl);
         mineFavoriteRl = view.findViewById(R.id.mine_favorite_rl);
@@ -88,6 +90,7 @@ public class MineFragment extends BaseFragment implements MineView {
     @Override
     protected void initView() {
         mineCardView1.setOnClickListener(this);
+        serverRl.setOnClickListener(this);
         settingsRl.setOnClickListener(this);
         exitRl.setOnClickListener(this);
         minePostRl.setOnClickListener(this);
@@ -190,6 +193,11 @@ public class MineFragment extends BaseFragment implements MineView {
 
         if (v.getId() == R.id.mine_draft_rl) {
             Intent intent = new Intent(mActivity, PostDraftActivity.class);
+            startActivity(intent);
+        }
+
+        if (v.getId() == R.id.mine_server_rl) {
+            Intent intent = new Intent(mActivity, ServerActivity.class);
             startActivity(intent);
         }
 

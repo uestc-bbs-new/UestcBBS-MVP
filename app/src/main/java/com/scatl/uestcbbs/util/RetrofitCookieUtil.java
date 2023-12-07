@@ -53,6 +53,9 @@ public class RetrofitCookieUtil {
                 .addInterceptor(chain -> {
                     Request.Builder builder = chain.request().newBuilder();
                     builder.addHeader("Cookie", getCookies());
+                    builder.url(chain.request().url().toString().replaceFirst(
+                            "^https?://bbs\\.uestc\\.edu\\.cn/",
+                            SharePrefUtil.getServerUrl(App.getContext())));
 
 //                    builder.removeHeader("User-Agent");
 //                    builder.addHeader("User-Agent", getUserAgent());

@@ -449,6 +449,45 @@
                     android:layout_height="wrap_content"
                     >
 
+                    <!--服务器地址-->
+                    <RelativeLayout
+                        android:id="@+id/mine_server_rl"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?android:attr/selectableItemBackground"
+                        >
+
+                        <RelativeLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="15dp">
+
+                            <ImageView
+                                android:id="@+id/mine_server_img"
+                                android:layout_width="25dp"
+                                android:layout_height="25dp"
+                                android:src="@drawable/ic_settings"
+                                android:layout_centerVertical="true"
+                                app:tint="#0b988f"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="服务器地址"
+                                android:textStyle="bold"
+                                android:textColor="@color/warningColor"
+                                android:layout_toEndOf="@id/mine_server_img"
+                                android:textSize="16sp"
+                                android:layout_marginStart="10dp"
+                                android:layout_centerVertical="true" />
+
+                        </RelativeLayout>
+
+                    </RelativeLayout>
+
                     <!--应用设置-->
                     <RelativeLayout
                         android:id="@+id/mine_settings_rl"
@@ -457,6 +496,7 @@
                         android:clickable="true"
                         android:focusable="true"
                         android:background="?android:attr/selectableItemBackground"
+                        android:layout_below="@id/mine_server_rl"
                         >
 
                         <RelativeLayout
