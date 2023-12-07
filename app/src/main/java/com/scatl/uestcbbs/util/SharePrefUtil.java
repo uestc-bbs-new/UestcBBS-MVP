@@ -1,5 +1,7 @@
 package com.scatl.uestcbbs.util;
 
+import static com.scatl.uestcbbs.api.ApiConstant.BBS_BASE_URL;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -304,4 +306,15 @@ public class SharePrefUtil {
         return sharedPreferences.getStringSet("showOnceDialogIds", new HashSet<>());
     }
 
+    public static void setServerUrl(Context context, String serverUrl) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("serverUrl", serverUrl);
+        editor.apply();
+    }
+
+    public static String getServerUrl(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("serverUrl", BBS_BASE_URL);
+    }
 }
