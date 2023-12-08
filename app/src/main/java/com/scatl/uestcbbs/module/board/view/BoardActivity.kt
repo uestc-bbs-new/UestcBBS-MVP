@@ -27,7 +27,7 @@ import com.scatl.uestcbbs.manager.ForumListManager
 import com.scatl.uestcbbs.helper.glidehelper.GlideEngineForPictureSelector
 import com.scatl.uestcbbs.module.board.adapter.BoardPostViewPagerAdapter
 import com.scatl.uestcbbs.module.board.presenter.BoardPresenter
-import com.scatl.uestcbbs.module.board.view.behavior.CoverBehavior
+import com.scatl.uestcbbs.v2025.module.board.view.behavior.CoverBehavior
 import com.scatl.uestcbbs.util.Constant
 import com.scatl.uestcbbs.util.SharePrefUtil
 import com.scatl.uestcbbs.util.isNullOrEmpty

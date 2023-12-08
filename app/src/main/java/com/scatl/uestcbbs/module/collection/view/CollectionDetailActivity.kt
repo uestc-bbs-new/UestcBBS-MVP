@@ -22,10 +22,10 @@ import com.scatl.uestcbbs.base.BaseVBActivity
 import com.scatl.uestcbbs.databinding.ActivityCollectionDetailBinding
 import com.scatl.uestcbbs.entity.CollectionDetailBean
 import com.scatl.uestcbbs.manager.MessageManager
-import com.scatl.uestcbbs.module.board.view.behavior.ContentBehavior
-import com.scatl.uestcbbs.module.board.view.behavior.CoverBehavior
-import com.scatl.uestcbbs.module.board.view.behavior.TitleBehavior
-import com.scatl.uestcbbs.module.board.view.behavior.ToolbarBehavior
+import com.scatl.uestcbbs.v2025.module.board.view.behavior.ContentBehavior
+import com.scatl.uestcbbs.v2025.module.board.view.behavior.CoverBehavior
+import com.scatl.uestcbbs.v2025.module.board.view.behavior.TitleBehavior
+import com.scatl.uestcbbs.v2025.module.board.view.behavior.ToolbarBehavior
 import com.scatl.uestcbbs.module.collection.adapter.CollectionPostAdapter
 import com.scatl.uestcbbs.module.collection.adapter.CollectionSameOwnerAdapter
 import com.scatl.uestcbbs.module.collection.adapter.CollectionTagAdapter

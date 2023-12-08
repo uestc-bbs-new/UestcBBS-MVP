@@ -1,4 +1,4 @@
-package com.scatl.uestcbbs.module.board.view.behavior
+package com.scatl.uestcbbs.v2025.module.board.view.behavior
 
 import android.content.Context
 import android.util.AttributeSet
