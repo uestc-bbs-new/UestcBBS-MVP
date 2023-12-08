@@ -41,7 +41,7 @@
 
         <provider
             android:name=".download.DownloadFileProvider"
-            android:authorities="com.scatl.widget.download.downloadFileProvider"
+            android:authorities="com.scatl.test2023.widget.download.downloadFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
