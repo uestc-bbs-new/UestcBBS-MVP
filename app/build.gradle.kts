@@ -47,6 +47,7 @@ dependencies {
     implementation(project(":util"))
     implementation(project(":widget"))
     implementation(Dependencies.glide)
+    implementation(Dependencies.glideokhttp)
     implementation(Dependencies.fastjson)
     implementation(Dependencies.luban)
     implementation(Dependencies.eventbus)

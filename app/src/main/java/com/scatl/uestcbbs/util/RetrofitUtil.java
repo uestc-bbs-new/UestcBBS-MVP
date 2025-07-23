@@ -51,10 +51,10 @@ public class RetrofitUtil {
                 .addInterceptor(chain -> {
                     Request request = chain.request();
                     Request.Builder newBuilder = chain.request().newBuilder();
-                    newBuilder.url(chain.request().url().toString().replaceFirst(
-                            "^https?://bbs\\.uestc\\.edu\\.cn/",
-                            SharePrefUtil.getServerUrl(App.getContext())));
-                    if (!request.url().toString().contains("r=user/login")) {
+                    newBuilder.url(ApiConstant.rebaseUrl(chain.request().url().toString()));
+                    if (SharePrefUtil.isVpnEnabled(App.getContext())) {
+                        newBuilder.addHeader("Cookie", SharePrefUtil.getVpnAuthCookie(App.getContext()));
+                    } else if (!request.url().toString().contains("r=user/login")) {
                         newBuilder.addHeader("Cookie", getCookies());
                     }
                     return chain.proceed(newBuilder.build());
@@ -63,7 +63,7 @@ public class RetrofitUtil {
 
                     Request request = chain.request();
 
-                    if (request.url().toString().contains("http://202.115.22.221:65342/")) {
+                    if (request.url().toString().startsWith(ApiConstant.getBaseUrl())) {
                         HashMap<String, String> addParams = new HashMap<>();
 
                         addParams.put("apphash", ForumUtil.getAppHashValue());
@@ -132,6 +132,7 @@ public class RetrofitUtil {
                         return chain.proceed(request);
                     }
                 })
+                .addNetworkInterceptor(new VpnLoginInterceptor())
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .callTimeout(120, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)

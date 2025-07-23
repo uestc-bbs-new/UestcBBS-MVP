@@ -1,8 +1,28 @@
 package com.scatl.uestcbbs.api;
 
+import com.scatl.uestcbbs.App;
+import com.scatl.uestcbbs.util.SharePrefUtil;
+
 public class ApiConstant {
 
     public static final String BBS_BASE_URL = "https://bbs.uestc.edu.cn/";
+    public static final String UESTC_VPN_ROOT_URL = "https://webvpn.uestc.edu.cn/";
+    public static final String BBS_VPN_BASE_URL = UESTC_VPN_ROOT_URL + "https/77726476706e69737468656265737421f2f552d232357b447d468ca88d1b203b/";
+    public static final String UESTC_VPN_LOGIN_URL = UESTC_VPN_ROOT_URL + "login";
+    public static final String UESTC_VPN_AUTH_URL = UESTC_VPN_ROOT_URL + "https/77726476706e69737468656265737421f9f3408f69256d436a0bc7a99c406d3652/authserver/login";
+    public static final String UESTC_VPN_AUTH_COOKIE = "wengine_vpn_ticketwebvpn_uestc_edu_cn";
+    public static String rebaseUrl(String url) {
+        if (SharePrefUtil.isVpnEnabled(App.getContext())) {
+            return url.replaceFirst(
+                "^https?://bbs\\.uestc\\.edu\\.cn/",
+                ApiConstant.BBS_VPN_BASE_URL);
+        }
+        return url;
+    }
+    public static String getBaseUrl() {
+        return SharePrefUtil.isVpnEnabled(App.getContext()) ? BBS_VPN_BASE_URL : BBS_BASE_URL;
+    }
+
     public static final String HOUQIN_BASE_URL = "https://hq.uestc.edu.cn/";
 
     public static final String BING_BASE_URL = "https://cn.bing.com/";

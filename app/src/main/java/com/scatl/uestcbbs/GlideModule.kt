@@ -8,8 +8,10 @@ import com.bumptech.glide.annotation.GlideModule
 import com.bumptech.glide.load.engine.cache.InternalCacheDiskCacheFactory
 import com.bumptech.glide.load.model.GlideUrl
 import com.bumptech.glide.module.AppGlideModule
+import com.scatl.uestcbbs.api.ApiConstant
 import com.scatl.uestcbbs.http.OkHttpUrlLoader
 import com.scatl.uestcbbs.util.SharePrefUtil
+import com.scatl.uestcbbs.util.VpnLoginInterceptor
 import com.scatl.util.OkHttpDns
 import com.scatl.util.SSLUtil
 import com.scatl.widget.glide.progress.GlideProgressInterceptor
@@ -41,7 +43,15 @@ class GlideModule: AppGlideModule() {
 
     private fun getOkhttpClient(): Call.Factory {
         val builder = OkHttpClient.Builder().dns(OkHttpDns())
-        builder.addInterceptor(GlideProgressInterceptor())
+        builder.addInterceptor({chain ->
+            val request = chain.request()
+            val rb = request.newBuilder()
+            if (SharePrefUtil.isVpnEnabled(App.getContext())) {
+                rb.url(ApiConstant.rebaseUrl(request.url.toString()))
+                rb.header("Cookie", SharePrefUtil.getVpnAuthCookie(App.getContext()))
+            }
+            return@addInterceptor chain.proceed(rb.build())
+        }).addInterceptor(GlideProgressInterceptor()).addInterceptor(VpnLoginInterceptor())
         if (SharePrefUtil.isIgnoreSSLVerifier(App.mContext)) {
             builder
                 .sslSocketFactory(SSLUtil.getSSLSocketFactory(), SSLUtil.getTrustManager())
