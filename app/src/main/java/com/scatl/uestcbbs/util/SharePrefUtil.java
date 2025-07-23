@@ -306,15 +306,50 @@ public class SharePrefUtil {
         return sharedPreferences.getStringSet("showOnceDialogIds", new HashSet<>());
     }
 
-    public static void setServerUrl(Context context, String serverUrl) {
+    public static void setVpnEnabled(Context context, boolean value) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("serverUrl", serverUrl);
+        editor.putString("uestc_webvpn", value ? "1" : "0");
         editor.apply();
     }
 
-    public static String getServerUrl(Context context) {
+    public static boolean isVpnEnabled(Context context) {
         SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
-        return sharedPreferences.getString("serverUrl", BBS_BASE_URL);
+        String value = sharedPreferences.getString("uestc_webvpn", "");
+        return value != null && value.equals("1");
+    }
+
+    public static void setVpnUser(Context context, String value) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("uestc_webvpn_user", value);
+        editor.apply();
+    }
+
+    public static String getVpnUser(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("uestc_webvpn_user", "");
+    }
+
+    public static void setVpnPass(Context context, String value) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("uestc_webvpn_pass", value);
+        editor.apply();
+    }
+
+    public static String getVpnPass(Context context) {
+        SharedPreferences sharedPreferences = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        return sharedPreferences.getString("uestc_webvpn_pass", "");
+    }
+
+    public static void setVpnAuthCookie(Context context, String value) {
+        SharedPreferences p = context.getSharedPreferences("settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor e = p.edit();
+        e.putString("uestc_webvpn_ticket", value);
+        e.apply();
+    }
+    public static String getVpnAuthCookie(Context context) {
+        return context.getSharedPreferences("settings", Context.MODE_PRIVATE).getString("uestc_webvpn_ticket", "");
     }
 }

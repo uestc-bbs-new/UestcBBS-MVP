@@ -19,39 +19,73 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:title="服务器地址"
+            app:title="服务器设置"
             app:navigationIcon="?attr/homeAsUpIndicator"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/about_rl1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
+        android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/about_app_bar">
 
-        <TextView
-            android:id="@+id/server_prompt_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="使用测试服务器测试手机客户端能否正常使用"
-            android:layout_marginStart="16dp"/>
-
-        <EditText
-            android:id="@+id/server_url"
-            android:autofillHints=""
-            android:inputType="textUri"
-            android:hint="包含协议、域名、端口及末尾的斜杠"
+        <RelativeLayout
+            android:id="@+id/server_vpn_switch_rl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/server_prompt_text"
-            android:layout_marginTop="12dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:text="使用校园 VPN 访问"
+                    android:textColor="@color/text_color"
+                    android:textSize="16sp" />
+
+                <Switch
+                    android:id="@+id/server_vpn_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="10dp" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <EditText
+            android:id="@+id/vpn_user"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"/>
-    </RelativeLayout>
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:autofillHints=""
+            android:hint="VPN 登录学号"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/vpn_pass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginRight="12dp"
+            android:autofillHints=""
+            android:hint="VPN 登录密码"
+            android:inputType="textPassword" />
+    </LinearLayout>
 
     <FrameLayout
         android:id="@+id/about_framelayout"
